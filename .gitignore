@@ -1,0 +1,8 @@
+.venv
+.git
+.idea
+__pycache__
+
+
+ta_lib-0.6.3-cp311-cp311-win_amd64.whl
+project_structure.xlsx
