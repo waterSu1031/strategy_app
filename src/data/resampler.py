@@ -1,6 +1,17 @@
 import pandas as pd
 
-def resample_ohlcv(df: pd.DataFrame, timeframe: str = '5min') -> pd.DataFrame:
+
+def apply_resampler(df, mode="time", **kwargs):
+    if mode == "time":
+        return time_bar(df, **kwargs)
+    elif mode == "range":
+        return range_bar(df, **kwargs)
+    elif mode == "tick":
+        return tick_bar(df, **kwargs)
+    else:
+        raise ValueError(f"Unsupported resample mode: {mode}")
+
+def time_bar(df: pd.DataFrame, timeframe: str = '5min') -> pd.DataFrame:
     if not {'Open', 'High', 'Low', 'Close', 'Volume'}.issubset(df.columns):
         raise ValueError("OHLCV 데이터가 누락되었습니다.")
 
@@ -13,7 +24,7 @@ def resample_ohlcv(df: pd.DataFrame, timeframe: str = '5min') -> pd.DataFrame:
 
     return ohlcv.dropna()
 
-def range_bars(df: pd.DataFrame, price_column: str = 'Close', range_size: float = 1.0) -> pd.DataFrame:
+def range_bar(df: pd.DataFrame, price_column: str = 'Close', range_size: float = 1.0) -> pd.DataFrame:
     bars = []
     last_price = None
     bar = {}
@@ -53,3 +64,7 @@ def range_bars(df: pd.DataFrame, price_column: str = 'Close', range_size: float 
     bars_df = pd.DataFrame(bars)
     bars_df.set_index('timestamp', inplace=True)
     return bars_df
+
+
+def tick_bar(df: pd.DataFrame, price_column: str = 'Close', range_size: float = 1.0) -> pd.DataFrame:
+    pass

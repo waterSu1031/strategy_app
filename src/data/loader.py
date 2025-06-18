@@ -3,15 +3,7 @@ import yfinance as yf
 import os
 
 def load_price_data(symbol: str, start: str = None, end: str = None, source: str = "yahoo", filepath: str = None) -> pd.DataFrame:
-    """
-    가격 데이터를 로드
-    :param symbol: 종목 코드 (예: 'AAPL')
-    :param start: 시작일자 (예: '2024-01-01')
-    :param end: 종료일자 (예: '2024-06-01')
-    :param source: 'yahoo' 또는 'csv'
-    :param filepath: CSV 로딩 시 경로
-    :return: OHLCV 데이터프레임 (datetime 인덱스)
-    """
+
     if source == "yahoo":
         df = yf.download(symbol, start=start, end=end)
         df = df.dropna()
