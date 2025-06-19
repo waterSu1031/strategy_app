@@ -1,5 +1,5 @@
-from src.strategies.example_strategy import ExampleStrategy
-from src.strategies.signal_generator import PortfolioRunner
+from src.strategies.example import ExampleStrategy
+from src.strategies.signal import PortfolioRunner
 from src.data import load_ibkr_data, stream_ibkr_data
 
 

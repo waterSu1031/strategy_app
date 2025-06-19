@@ -1,5 +1,5 @@
 import pandas as pd
-from src.strategies.base_strategy import BaseStrategy
+from src.strategies.base import BaseStrategy
 
 class ExampleStrategy(BaseStrategy):
     def __init__(self, price: pd.Series, fast_window: int = 10, slow_window: int = 20, direction: str = "long"):

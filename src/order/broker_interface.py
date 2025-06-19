@@ -42,21 +42,6 @@ class BrokerInterface(ABC):
     def get_account_info(self) -> Dict:
         """총 자산, 잔고, 미실현 손익 등 계좌 정보"""
 
-    # --- 실시간 가격 피드 (옵션) ---
-    @abstractmethod
-    def get_last_price(self, symbol: str) -> float:
-        """가장 최근 체결 가격"""
-
-    @abstractmethod
-    def get_bid_ask(self, symbol: str) -> Dict[str, float]:
-        """호가 정보: bid/ask spread"""
-
-    # --- 거래 내역 ---
-    @abstractmethod
-    def get_trade_history(self, symbol: Optional[str] = None,
-                           limit: int = 100) -> List[Dict]:
-        """최근 체결 기록 조회"""
-
     # --- 연결 상태 ---
     @abstractmethod
     def is_connected(self) -> bool:
